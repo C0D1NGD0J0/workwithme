@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //ROUTES
-app.use('/', require("../app/routes"));
+app.use('/', require("./app/routes"));
 
 // ERROR HANDLER
 app.use(function(req, res, next) {
