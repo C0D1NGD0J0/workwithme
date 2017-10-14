@@ -1,10 +1,10 @@
 {
   "name": "workwithme",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
