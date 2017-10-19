@@ -5,11 +5,11 @@ const router = express.Router();
 
 /* Basic Routes. */
 router.get('/', function(req, res, next) {
-  res.render('pages/index', { title: 'Express' });
+  res.render('pages/index', {title: "WorkWithMe | A platform for real-time collaboration"});
 });
 
 router.get('/about', (req, res, next) => {
-	res.render('pages/about', {title: "About | WorkWithMe"});
+	res.render('pages/about', {title: "WorkWithMe | A platform for real-time collaboration"});
 });
 
 /* OTHER ROUTES */
