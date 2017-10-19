@@ -22,7 +22,7 @@ router.get('/contact', (req, res, next) =>{
 router.post('/contact', v.validateContactForm, (req, res) =>{
 	let mailOptions = {
 		replyTo: req.body.email,
-		to: "WorkWithMe <sam.gdouglas@gmail.com>",
+		to: "WorkWithMe " + process.env.GMAIL_USERNAME,
 		subject: req.body.subject,
 		text: req.body.contact_msg
 	}

@@ -4,8 +4,8 @@ module.exports = {
 	mailerConfig: {
 		service: "Gmail",
 		auth: {
-			user: "sam.gdouglas@gmail.com",
-			pass: "Aleesi@12"
+			user: process.env.GMAIL_USERNAME,
+			pass: process.env.GMAIL_PASSWORD
 		}
 	}
 }
