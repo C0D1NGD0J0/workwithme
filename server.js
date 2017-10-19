@@ -7,6 +7,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const ejslayout = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
+const validator = require('express-validator');
 const port = (process.env.PORT || '3000');
 
 const app = express();
@@ -15,6 +16,7 @@ const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

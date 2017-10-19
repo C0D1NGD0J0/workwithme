@@ -1,7 +1,10 @@
 "use strict";
-
 const express = require('express');
 const router = express.Router();
+const v = require('../config/validator');
+const m = require('../config/mailer');
+const mailer = require('nodemailer');
+const transporter = mailer.createTransport(m.mailerConfig);
 
 /* Basic Routes. */
 router.get('/', function(req, res, next) {
@@ -12,13 +15,23 @@ router.get('/about', (req, res, next) => {
 	res.render('pages/about', {title: "WorkWithMe | A platform for real-time collaboration"});
 });
 
-router.route('/contact')
-	.get((req, res, next) =>{
-		res.render('pages/contact', {title: 'Contact Us | WorkWithMe'});
+router.get('/contact', (req, res, next) =>{
+	res.render('pages/contact', {title: 'Contact Us | WorkWithMe'});
+});
+
+router.post('/contact', v.validateContactForm, (req, res) =>{
+	let mailOptions = {
+		replyTo: req.body.email,
+		to: "WorkWithMe <sam.gdouglas@gmail.com>",
+		subject: req.body.subject,
+		text: req.body.contact_msg
+	}
+
+	transporter.sendMail(mailOptions, function(err, info){
+		if(err) return console.log(err);
+		res.render('pages/index', {title: 'WorkWithMe'});
 	})
-	.post((req, res, next) =>{
-		res.redirect('/');
-	});	
+});	
 
 /* OTHER ROUTES */
 router.use('/users', require('./users'));

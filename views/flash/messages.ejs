@@ -1,0 +1,32 @@
+<% if(flashErr && flashErr.length > 0){ %>
+	<div class="row">
+		<% flashErr.forEach((msg) =>{%>
+			<div class="alert alert-danger alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<%= msg %>
+			</div>
+		<% }) %>
+	</div><!--/row-->
+<% } %>
+
+<% if(flashSuccess && flashSuccess.length > 0){%>
+	<div class="row">
+		<% flashSuccess.forEach((msg) =>{%>
+			<div class="alert alert-success alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<%= msg %>
+			</div>
+		<% }) %>
+	</div><!--/row-->
+<%}%>
+
+<% if(flashWarning && flashWarning.length > 0){%>
+	<div class="row">
+		<% flashWarning.forEach((msg) =>{%>
+			<div class="alert alert-info alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<%= msg %>
+			</div>
+		<% }) %>
+	</div><!--/row-->
+<%}%>
