@@ -25,6 +25,10 @@ p{
 	margin-bottom: 20px;
 }
 
+section{
+	padding: 50px 10px;
+}
+
 .btn{
 	border-radius: 0;
 	padding: 5px 15px;
@@ -32,6 +36,13 @@ p{
 	text-transform: uppercase;
 }
 
+.main-header{
+	text-transform: uppercase;
+	font-size: 450%;
+	font-weight: 600;
+	text-align: center;
+	padding-bottom: 30px;
+}
 /*================
 HEADER SECTION
 =================*/
@@ -44,14 +55,6 @@ header{
 	display: flex;
 	align-items: center;
 }
-
-
-/*.header{
-	width: 80%;
-	margin: 0 auto;
-	margin-top: 25px;
-	padding-top: 25px;
-}*/
 
 .intro{
 	outline: 2px solid #fff;
@@ -83,27 +86,34 @@ header{
 /*=================
 LOGIN PAGE
 =================*/
-#login-form{
+.myform{
 	color: #000;
 	font-size: 120%;
 }
 
-.login-form input[type="email"],
-.login-form input[type="password"]{
-	height: 40px;
-	margin: 0;
-	padding: 0 20px;
-	vertical-align: middle;
-	font-size: 14px;
-	font-weight: 100;
-	line-height: 50px;
-	color: #000;
-	border-radius: 0px;
-	outline: none;
+.myform input[type="text"],
+.myform input[type="email"],
+.myform input[type="password"]{
+  margin: 0;
+  height: 45px;
+  color: #000;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 50px;
+  border-radius: 0px;
+  vertical-align: middle;
 }
 
-section#login-section{
-	padding: 50px 20px;
+textarea, 
+textarea.form-control{
+  padding-top: 10px;
+  padding-bottom: 5px;
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  border-radius: 0;
 }
 
 .login_icon{
