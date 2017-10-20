@@ -1,8 +1,12 @@
 "use strict";
-
 const mongoose = require('mongoose');
+const localDB = "mongodb://localhost:27017/workwithme";
 const isProduction = (process.env.NODE_ENV === 'production');
-const db = require('../config/index');
 
+mongoose.Promise = global.Promise;
+mongoose.connect(localDB);
 
-// module.exports = 
+mongoose.connection.on('open', (err) => {
+	if(err) return console.log("Mongoose connection error occured ", err);
+	console.log('Connected to Local MongoDB');
+});
