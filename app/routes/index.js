@@ -15,25 +15,26 @@ router.get('/about', (req, res, next) => {
 	res.render('pages/about', {title: "WorkWithMe | A platform for real-time collaboration"});
 });
 
-router.get('/contact', (req, res, next) =>{
-	res.render('pages/contact', {title: 'Contact Us | WorkWithMe'});
-});
-
-router.post('/contact', v.validateContactForm, (req, res) =>{
-	let mailOptions = {
-		replyTo: req.body.email,
-		to: "WorkWithMe " + process.env.GMAIL_USERNAME,
-		subject: req.body.subject,
-		text: req.body.contact_msg
-	}
-
-	transporter.sendMail(mailOptions, function(err, info){
-		if(err) return console.log(err);
-		res.render('pages/index', {title: 'WorkWithMe'});
+router.route('/contact')
+	.get((req, res, next) =>{
+		res.render('pages/contact', {title: 'Contact Us | WorkWithMe'});
 	})
-});	
+
+	.post(v.validateContactForm, (req, res) =>{
+		let mailOptions = {
+			replyTo: req.body.email,
+			to: "WorkWithMe " + process.env.GMAIL_USERNAME,
+			subject: req.body.subject,
+			text: req.body.contact_msg
+		}
+
+		transporter.sendMail(mailOptions, function(err, info){
+			if(err) return console.log(err);
+			res.render('pages/index', {title: 'WorkWithMe'});
+		})
+	});
 
 /* OTHER ROUTES */
-router.use('/users', require('./users'));
+router.use(require('./auth'));
 
 module.exports = router;
