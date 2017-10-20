@@ -25,6 +25,9 @@ app.set('view engine', 'ejs');
 app.use(ejslayout);
 app.set('views', path.join(__dirname, 'views'));
 
+//MODELS
+require('./app/models/user');
+
 //ROUTES
 app.use('/', require("./app/routes"));
 
