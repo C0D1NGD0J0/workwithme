@@ -22,6 +22,27 @@ function validateContactForm(req, res, next){
 	}
 }
 
+function validateSignupForm(req, res, next){
+	req.checkBody('username', 'Empty username field').notEmpty();
+	req.checkBody('email', 'Invalid email').isEmail();
+	req.checkBody('password', 'Empty password field').notEmpty();
+	req.checkBody('confirm_password', 'Password do not match').equals(req.body.confirm_password).notEmpty();
+
+	let errors = req.validationErrors();
+	
+	if(errors){
+		res.render('auth/signup', {
+			username: req.body.username,
+			email: req.body.email,
+			flashErr: errors
+		});
+		console.log(errors);
+	} else {
+		return next();
+	}
+}
+
 module.exports = {
-	validateContactForm
+	validateContactForm,
+	validateSignupForm
 }

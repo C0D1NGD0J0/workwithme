@@ -8,6 +8,10 @@ const cookieParser = require('cookie-parser');
 const ejslayout = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const validator = require('express-validator');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const session = require('express-session');
+const secrets = require('./app/config/secrets');
 const port = (process.env.PORT || '3000');
 
 const app = express();
@@ -18,7 +22,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
+app.use(session({
+  secret: secrets.sessionKey,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {secure: true}
+}))
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // VIEW ENGINE
 app.set('view engine', 'ejs');
@@ -30,6 +43,8 @@ require('./app/db');
 
 //MODELS
 require('./app/models/user');
+
+require('./app/config/passport');
 
 //ROUTES
 app.use('/', require("./app/routes"));

@@ -18,7 +18,7 @@ let UserSchema = new Schema({
 	},
 	hash: String,
 	salt: String
-});
+}, {timestamps: true});
 
 UserSchema.methods.encryptPWD = function(pwd){
 	this.salt = crypto.randomBytes(16).toString('hex');
