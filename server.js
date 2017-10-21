@@ -16,6 +16,9 @@ const port = (process.env.PORT || '3000');
 
 const app = express();
 
+//DB CONNECTION
+require('./app/db');
+
 // MIDDLEWARE
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -25,25 +28,25 @@ app.use(cookieParser());
 app.use(session({
   secret: secrets.sessionKey,
   resave: false,
-  saveUninitialized: true,
-  cookie: {secure: true}
+  saveUninitialized: true
 }))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  next();
+});
 
 // VIEW ENGINE
 app.set('view engine', 'ejs');
 app.use(ejslayout);
 app.set('views', path.join(__dirname, 'views'));
 
-//DB CONNECTION
-require('./app/db');
-
 //MODELS
 require('./app/models/user');
 
+// AUTHENTICATION
 require('./app/config/passport');
 
 //ROUTES

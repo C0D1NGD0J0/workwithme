@@ -3,11 +3,18 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 const v = require('../config/validator');
+const passport = require('passport');
 const User = mongoose.model('User');
 
-router.get('/login', (req, res, next) =>{
-	res.render('auth/login', {title: 'Login || WorkWithMe'})
-});
+router.route('/login')
+	.get((req, res, next) =>{
+		res.render('auth/login', {title: 'Login || WorkWithMe'})
+	})
+
+	.post(passport.authenticate('login', {
+		successRedirect: '/',
+		failureRedirect: '/login'
+	}));
 
 router.route('/signup')
 	.get((req, res, next) =>{
@@ -15,19 +22,15 @@ router.route('/signup')
 	})
 
 	.post(v.validateSignupForm, (req, res, next) =>{
-		let user = new User();
-		user.username = req.body.username;
-		user.email = req.body.email;
-		user.encryptPWD(req.body.password);
-
-		user.save((err) =>{
-			if(err){
-				res.render('auth/signup', {flashErr: err});
-			} else {
-				res.redirect('/login');
-			}
+		passport.authenticate('signup',{
+			successRedirect: '/login',
+			failureRedirect: '/signup'
 		})
 	});
 
+router.get('/logout', (req, res, next) =>{
+	req.logout();
+	res.redirect('/');
+});
 
 module.exports = router;

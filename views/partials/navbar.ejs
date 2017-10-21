@@ -13,8 +13,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/login">Login</a></li>
         <li><a href="/contact">Contact</a></li>
+        <% if(!currentUser) {%>
+          <li><a href="/login">Login</a></li>
+        <%} else {%>
+          <li><a>Signed In As: <%= currentUser.username %></a></li>
+          <li><a href="/logout">Logout</a></li>
+        <% } %>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

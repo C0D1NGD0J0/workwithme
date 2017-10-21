@@ -14,16 +14,38 @@ passport.deserializeUser(function(id, done){
 	})
 });
 
-passport.use('local-login', new LocalStrategy({
-		usernameField: 'email',
+passport.use('signup', new LocalStrategy({
+		usernameField: 'username',
 		passwordField: 'password',
 		passReqToCallback: true
 	}, function(username, pwd, done){
 		User.findOne({username}, function(err, user){
 			if(err) return done(err);
-			if(!user) return done(null, false, {message: 'Incorrect username/password combination!'});
-			if(!user.validatePWD(pwd)) return done(null, false, {message: "Incorrect username/password combination!."});
-			return done(null, user);
-		})
+			if(user) return done(null, false, {message: 'Username not available.'});
+			
+			let new_user = new User();
+			new_user.username = req.body.username;
+			new_user.email = req.body.email;
+			new_user.encryptPWD(req.body.password);
+
+			user.save((err) =>{
+				if(err) return res.render('auth/signup', {flashErr: err});
+				return done(null, user);
+			});
+		});
 	})
 );
+
+passport.use('login', new LocalStrategy({
+	usernameField: 'username',
+	passwordField: 'password',
+	passReqToCallback: true
+}, function(req, username, pwd, done){
+	User.findOne({username}, (err, user) =>{
+		if(err) return done(err);
+		if(!user || !user.validatePWD(pwd)) {
+			return done(null, false, {message: 'Invalid username/password combination.'});
+		}
+		return done(null, user);
+	});
+}));
