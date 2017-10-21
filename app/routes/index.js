@@ -36,5 +36,6 @@ router.route('/contact')
 
 /* OTHER ROUTES */
 router.use(require('./auth'));
+router.use(require('./project'));
 
 module.exports = router;

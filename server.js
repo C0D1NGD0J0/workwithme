@@ -45,6 +45,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 //MODELS
 require('./app/models/user');
+require('./app/models/project');
 
 // AUTHENTICATION
 require('./app/config/passport');
