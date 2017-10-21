@@ -1,1 +1,27 @@
-<h1>Project Show Page</h1>
+<div class="container-fluid" style="margin-top: 3px; padding: 5px;">
+	<div class="row">
+		<div class="col-md-9">
+			<textarea id="code-screen"></textarea>
+		</div>
+
+		<div class="col-md-3">
+			<div id="chatbox">
+				<!-- CHAT TEXT AREA -->
+			</div>
+		</div>
+	</div><!--/row-->
+</div><!--/container-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/css/css.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/ruby/ruby.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/javascript/javascript.min.js"></script>
+
+<script>
+	"use strict";
+
+	let editor = CodeMirror.fromTextArea(document.querySelector('#code-screen'), {
+		lineNumbers: true,
+		theme: "monokai"
+	});
+</script>
