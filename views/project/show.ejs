@@ -25,7 +25,7 @@
 					<div class="panel-footer">
 						<input type="text" class="form-control" placeholder="Enter message.." id="user-message">
 						<span class="input-group-btn">
-							<button type="button" class="btn btn-danger btn-sm" onclick="sendMessage()">SEND</button>
+							<button type="button" class="btn btn-danger btn-sm" id="sendMsg-btn">SEND</button>
 						</span>
 					</div>
 				</div>
@@ -34,14 +34,11 @@
 	</div><!--/row-->
 </div><!--/container-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/css/css.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/ruby/ruby.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/javascript/javascript.min.js"></script>
 
 <script>
-	"use strict";
-
 	let editor = CodeMirror.fromTextArea(document.querySelector('#code-screen'), {
 		lineNumbers: true,
 		theme: "monokai"

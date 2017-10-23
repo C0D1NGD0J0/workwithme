@@ -19,7 +19,7 @@ router.get('/project/new', v.isLoggedIn, (req, res, next) =>{
 	});
 });
 
-router.get('/project/:id', v.isLoggedIn, (req, res, next) =>{
+router.get('/project/:id', (req, res, next) =>{
 	let projectID = req.params.id;
 	if(projectID){
 		Project.findById({_id: projectID}, (err, project) =>{

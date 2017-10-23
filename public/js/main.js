@@ -5,8 +5,7 @@ $(function(){
 	console.log('Connected(frontend)');
 
 	let username = $('#chatbox-username').val();
-	console.log("Current logged in user is: ", username);
-	
+
 	if(username === "" || username === 'undefined'){
 		let userID = Math.floor(Math.random() * 9999).toString();
 		username = "Guest-User " + userID;
@@ -24,11 +23,17 @@ $(function(){
 		`);
 	};
 
-	let sendMessage = function(){
+	// let sendMessage = function(){
+	// 	let userMsg = $('#user-message').val();
+	// 	socket.emit('chatMessage', {username, userMsg});
+	// 	$('#user-message').val();
+	// }
+
+	$('#sendMsg-btn').on('click', function(){
 		let userMsg = $('#user-message').val();
 		socket.emit('chatMessage', {username, userMsg});
-		$('#user-message').val();
-	}
+		$('#user-message').val('');
+	});
 
 	socket.on('chatMessage', function(data){
 		$('#chatbox-messages').append(html(data.username, data.userMsg));
