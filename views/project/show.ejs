@@ -1,12 +1,34 @@
 <div class="container-fluid" style="margin-top: 3px; padding: 5px;">
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-md-8">
 			<textarea id="code-screen"></textarea>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div id="chatbox">
-				<!-- CHAT TEXT AREA -->
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<span>CHAT ROOM</span>
+						<span class="pull-right" id="chatbox-username">
+							<% if(currentUser) {%>
+								<%= currentUser.username %>
+							<% } %>
+						</span>
+					</div><!--/panel-heading-->
+
+					<div class="panel-body">
+						<ul class="media-list" style="height: 350px; overflow-y: scroll;" id="chatbox-messages">
+							
+						</ul>
+					</div><!--/panel-body-->
+
+					<div class="panel-footer">
+						<input type="text" class="form-control" placeholder="Enter message.." id="user-message">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-danger btn-sm" onclick="sendMessage()">SEND</button>
+						</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div><!--/row-->
