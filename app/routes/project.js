@@ -20,11 +20,11 @@ router.get('/project/new', v.isLoggedIn, (req, res, next) =>{
 });
 
 router.get('/project/:id', (req, res, next) =>{
-	let projectID = req.params.id;
-	if(projectID){
-		Project.findById({_id: projectID}, (err, project) =>{
-			if(err || !project) res.render('error', {flashErr: err});
-			return res.render('project/show', {project})
+	let params = req.params.id;
+	if(params){
+		Project.findById({_id: params}, (err, data) =>{
+			if(err || !data) res.render('error', {flashErr: err});
+			return res.render('project/show', {data, roomID: data.id});
 		});
 	} else {
 		res.render('error');
