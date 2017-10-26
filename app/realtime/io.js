@@ -3,6 +3,7 @@ const ot = require('ot');
 const roomList = {};
 const mongoose = require('mongoose');
 const Project = mongoose.model('Project');
+const peerJS_API_KEY = process.env.PEERJS_KEY;
 
 module.exports = function(io){
 	let dummyText = "This is a markdown heading";

@@ -29,6 +29,10 @@ section{
 	padding: 50px 10px;
 }
 
+video{
+	width: 100%;
+}
+
 .btn{
 	border-radius: 0;
 	padding: 5px 15px;
@@ -141,5 +145,36 @@ footer{
 footer p{
 	margin: 0;
 	padding: 10px 5px;
+	text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*===========================*/
+#video-box{
+	margin-right: 3px;
+	width: 95%;
+	min-height: 300px;
+	margin: 0 auto;
+	background-color: green;
+}
+
+#error_messages{
+	display: none;
+}
+
+#video-box p{
+	padding: 3px;
+	color: #fff; 
 	text-transform: uppercase;
 }

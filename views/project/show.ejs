@@ -1,10 +1,17 @@
 <div class="container-fluid" style="margin-top: 3px; padding: 5px;">
 	<div class="row">
 		<div class="col-md-8">
-			<textarea id="code-screen"><%= content %></textarea>
+			<textarea id="code-screen" cols="25"><%= content %></textarea>
 		</div>
 
 		<div class="col-md-4">
+			<div id="video-box">
+				<p>Currently in call with <span id="guest-id">...</span></p>
+				<video autoplay id="guest-video"></video>
+			</div>
+		</div><!--/col4-->
+
+		<div class="col-md-8" style="margin-top: 25px;">
 			<div id="chatbox">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
@@ -17,21 +24,32 @@
 					</div><!--/panel-heading-->
 
 					<div class="panel-body">
-						<ul class="media-list" style="height: 350px; overflow-y: scroll;" id="chatbox-messages">
-							
+						<ul class="media-list" style="height: 300px; overflow-y: scroll;" id="chatbox-messages">
 						</ul>
 					</div><!--/panel-body-->
 
 					<div class="panel-footer">
 						<input type="hidden" value="<%= roomID %>" id="roomId">
 						<input type="text" class="form-control" placeholder="Enter message.." id="user-message">
-						<span class="input-group-btn">
-							<button type="button" class="btn btn-danger btn-sm" id="sendMsg-btn">SEND</button>
-						</span>
+						<br><button type="button" class="btn btn-danger btn-sm" id="sendMsg-btn">SEND</button>
 					</div>
-				</div>
-			</div>
+				</div><!--/panel-->
+			</div><!--/chatBox-->
 		</div>
+		 
+		<div class="col-md-4" style="margin-top: 25px;">
+			<div id="video-box">
+				<p>Your id: <span id="my-id">...</span></p>
+				<p>Share this id with others so they can call you.</p>
+				<video autoplay id="my-video" muted="true"></video>
+			</div>
+
+			<div class="form-inline" style="padding-left: 10px; padding-top: 20px;">
+				<input type="text" class="form-control" id="callto-id" placeholder="Call User ID..."> 
+				<a href="#" class="btn btn-small btn-info" id="make-call-btn">Call</a>  
+				<a href="#" class="btn btn-small btn-danger" id="end-call-btn">End Call</a>
+			</div>
+		</div><!--/col4-->
 	</div><!--/row-->
 </div><!--/container-->
 
