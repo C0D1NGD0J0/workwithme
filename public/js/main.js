@@ -5,6 +5,7 @@ $(function(){
 	let SocketIOAdapter = ot.SocketIOAdapter;
 	let CodeMirrorAdapter = ot.CodeMirrorAdapter;
 	let cmClient;
+	let code = $('#code-screen').val();
 
 	console.log('Connected(frontend)');
 
@@ -14,7 +15,9 @@ $(function(){
 	});
 
 	function init(str, revision, clients, serverAdapter){
-		editor.setValue(str);
+		if(!code){
+			editor.setValue(str);
+		}
 		cmClient = window.cmClient = new EditorClient(
 			revision, clients, serverAdapter, new CodeMirrorAdapter(editor)
 		);

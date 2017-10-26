@@ -1,6 +1,8 @@
 "use strict";
 const ot = require('ot');
 const roomList = {};
+const mongoose = require('mongoose');
+const Project = mongoose.model('Project');
 
 module.exports = function(io){
 	let dummyText = "This is a markdown heading";
@@ -11,7 +13,11 @@ module.exports = function(io){
 		socket.on('joinRoom', function(data){
 			if(!roomList[data.room]){
 				let socketIOServer = new ot.EditorSocketIOServer(dummyText, [], data.room, function(socket, cb){
-					cb(true);
+					let self = this;
+					Project.findByIdAndUpdate(data.room, {content: self.document}, function(err){
+						if(err) return cb(false);
+						cb(true);
+					});
 				});
 				roomList[data.room] = socketIOServer;
 			}

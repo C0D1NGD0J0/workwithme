@@ -46,15 +46,15 @@ app.set('view engine', 'ejs');
 app.use(ejslayout);
 app.set('views', path.join(__dirname, 'views'));
 
-// SOCKET.IO CONFIG
-require('./app/realtime/io')(io);
-
 //MODELS
 require('./app/models/user');
 require('./app/models/project');
 
 // AUTHENTICATION
 require('./app/config/passport');
+
+// SOCKET.IO CONFIG
+require('./app/realtime/io')(io);
 
 //ROUTES
 app.use('/', require("./app/routes"));

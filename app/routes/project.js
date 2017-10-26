@@ -24,7 +24,7 @@ router.get('/project/:id', (req, res, next) =>{
 	if(params){
 		Project.findById({_id: params}, (err, data) =>{
 			if(err || !data) res.render('error', {flashErr: err});
-			return res.render('project/show', {data, roomID: data.id});
+			return res.render('project/show', {content: data.content, roomID: data.id});
 		});
 	} else {
 		res.render('error');
