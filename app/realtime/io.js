@@ -6,7 +6,7 @@ module.exports = function(io){
 	let dummyText = "This is a markdown heading";
 
 	io.on('connection', (socket) =>{
-		console.log('Connected(backend).');
+		console.log('Connected(backend)');
 
 		socket.on('joinRoom', function(data){
 			if(!roomList[data.room]){
